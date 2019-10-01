@@ -6,20 +6,20 @@
 #    By: hde-ghel <hde-ghel@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/17 16:02:33 by hde-ghel          #+#    #+#              #
-#    Updated: 2019/05/28 14:32:43 by hde-ghel         ###   ########.fr        #
+#    Updated: 2019/04/07 14:18:27 by hde-ghel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fractol
+NAME = Fract_ol
 CC = gcc
-FLAGS = -Wall -Werror -Wextra
+FLAGS = #-Wall -Werror -Wextra
 LIBFT = $(LIBDIR)libft.a
 SRCDIR = ./src/
 OBJDIR = ./obj/
 LIBDIR = ./libft/
-LIBXDIR = ./minilibx_macos/
+LIBXDIR = ./minilibx/
 INCL = ./includes/
-FRAMEWORK = -framework OpenGL -framework Appkit
+DEPENDENCES = -lm -L/usr/lib64/X11 -lX11 -lXext -L/usr/lib64
 
 FILES = $(shell find src -type f | grep -E "\.c$$" | sed 's/src//g')
 SRC = $(addprefix $(SRCDIR), $(FILES))
@@ -33,7 +33,7 @@ C_CYAN = \033[96m
 C_GREEN = \033[32m
 C_RED = \033[32m
 C_MAG = \033[1;35m
-C_RESET = \033[1;39
+C_RESET = \e[0m
 
 all: lib $(NAME)
 
@@ -51,8 +51,8 @@ $(OBJSUBDIR):
 	@mkdir $@
 
 $(NAME): $(OBJSUBDIR) $(OBJ)
-	@echo "$(C_CYAN)Fract_ol OBJ creation   [$(C_GREEN)✔$(C_CYAN)] $(C_RESET)"
-	@$(CC) $(FLAGS) $(OBJ) -o $(NAME) $(LIBFT) -L $(LIBXDIR) -lmlx $(FRAMEWORK)
+	@echo "$(C_CYAN)Fract_ol OBJ creation   [$(C_GREEN)✔$(C_CYAN)]$(C_RESET)"
+	@$(CC) $(OBJ) -o $(NAME) $(LIBFT) -L $(LIBXDIR) -lmlx $(DEPENDENCES)
 	@echo "$(C_CYAN)Fract_ol OBJ compilation[$(C_GREEN)✔$(C_CYAN)]$(C_RESET)"
 
 clean:
@@ -63,7 +63,7 @@ clean:
 
 fclean: clean
 	@rm -rf $(NAME)
-	@echo "$(C_CYAN)Deleting libftprintf.a  [$(C_GREEN)✔$(C_CYAN)]"
+	@echo "$(C_CYAN)Deleting fractol        [$(C_GREEN)✔$(C_CYAN)]"
 	@rm -rf $(LIBFT)
 	@echo "$(C_CYAN)Deleting libft.a        [$(C_GREEN)✔$(C_CYAN)]$(C_RESET)"
 

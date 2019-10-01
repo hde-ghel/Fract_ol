@@ -6,7 +6,7 @@
 #    By: hde-ghel <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/10 11:33:13 by hde-ghel          #+#    #+#              #
-#    Updated: 2019/05/28 14:38:32 by hde-ghel         ###   ########.fr        #
+#    Updated: 2018/11/28 14:54:40 by hde-ghel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,5 +43,3 @@ fclean : clean
 	@/bin/rm -f $(NAME)
 
 re : fclean all
-
-.PHONY: all clean fclean re
